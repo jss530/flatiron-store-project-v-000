@@ -15,4 +15,10 @@ class User < ActiveRecord::Base
   def current_cart
     @current_cart = Cart.find_by(id: self.current_cart_id)
   end
+
+  def remove_cart
+    self.current_cart_id = nil
+    self.save
+  end
+
 end

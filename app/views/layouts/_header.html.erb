@@ -4,14 +4,14 @@
         <% if user_signed_in? %>
            <h3><strong><%= "Signed in as #{current_user.email}" %></strong></h3>
            <br>
-           <%= link_to "Sign out", destroy_user_session_path %>
+           <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+             <% if current_user.current_cart %>
+              <li><%= link_to "Cart", cart_path(current_user.current_cart.id) %></li>
+              <% end %>
         <% else %>
            <%= link_to "sign in", new_user_session_path %><br>
            <%= link_to "Sign up", new_user_registration_path %><br>
         <% end %>
         <br>
         <%= link_to "Store Home", store_path %><br>
-        <% if !!@cart %>
-        <%= link_to "Cart", cart_path(current_cart) %>
-        <% end %>
 </nav>
